@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/carambar
     docker:
-    - image: circleci/openjdk:8-jdk
+    - image: circleci/android:api-28
     steps:
     - checkout
     - restore_cache:

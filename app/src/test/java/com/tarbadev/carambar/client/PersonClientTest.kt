@@ -48,7 +48,8 @@ internal class PersonClientTest {
             firstName = "John",
             lastName = "Doe",
             sex = "Male",
-            origin = "United States"
+            origin = "United States",
+            age = 0
         )
 
         assertThat(personClient.generateNewPerson()).isEqualTo(person)

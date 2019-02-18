@@ -2,7 +2,6 @@ package com.tarbadev.carambar
 
 import android.app.Activity
 import android.app.Application
-import com.tarbadev.carambar.ui.DaggerTestApplicationComponent
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 

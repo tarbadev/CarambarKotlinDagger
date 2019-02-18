@@ -46,8 +46,7 @@ class PersonClient @Inject constructor(
             firstName = personClientResponse.name.first.capitalize(),
             lastName = personClientResponse.name.last.capitalize(),
             sex = personClientResponse.gender.capitalize(),
-            origin = mapOriginResponseToDomain.getValue(personClientResponse.nat),
-            ageCategory = AgeCategory.BABY
+            origin = mapOriginResponseToDomain.getValue(personClientResponse.nat)
         )
     }
 }

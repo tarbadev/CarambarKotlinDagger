@@ -1,6 +1,5 @@
 package com.tarbadev.carambar
 
-import com.tarbadev.carambar.domain.AgeCategory
 import com.tarbadev.carambar.domain.Person
 
 class Factory {
@@ -11,7 +10,6 @@ class Factory {
                 lastName = "Doe",
                 sex = "Male",
                 origin = "United States",
-                ageCategory = AgeCategory.BABY,
                 age = 0
             )
         }

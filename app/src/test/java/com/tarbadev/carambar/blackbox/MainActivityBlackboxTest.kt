@@ -96,8 +96,7 @@ class MainActivityBlackboxTest {
             lastName = "Faure",
             sex = "Male",
             origin = "Italy",
-            age = 42,
-            ageCategory = AgeCategory.BABY
+            age = 42
         )
         writeInternalFile(PersonRepository.FILENAME, Gson().toJson(person))
 

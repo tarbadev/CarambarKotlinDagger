@@ -4,7 +4,6 @@ import android.app.Activity
 import android.app.Application
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
-
 import javax.inject.Inject
 
 class CarambarApplication : Application(), HasActivityInjector {
@@ -13,7 +12,12 @@ class CarambarApplication : Application(), HasActivityInjector {
 
     override fun onCreate() {
         super.onCreate()
-        DaggerApplicationComponent.create().inject(this)
+        val component = DaggerApplicationComponent
+            .builder()
+            .contextModule(ContextModule(applicationContext))
+            .build()
+
+        component.inject(this)
     }
 
     override fun activityInjector(): DispatchingAndroidInjector<Activity>? {

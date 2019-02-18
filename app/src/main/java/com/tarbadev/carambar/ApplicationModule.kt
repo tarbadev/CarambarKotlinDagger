@@ -1,7 +1,7 @@
 package com.tarbadev.carambar
 
-import dagger.Module
 import com.tarbadev.carambar.ui.activity.MainActivity
+import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module

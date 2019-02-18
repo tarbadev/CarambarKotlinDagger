@@ -1,5 +1,6 @@
 package com.tarbadev.carambar.blackbox.activity
 
+import android.widget.Button
 import android.widget.TextView
 import com.tarbadev.carambar.ui.activity.MainActivity
 
@@ -27,5 +28,10 @@ class MainActivityView(private val activity: MainActivity) {
     fun getAge(): String {
         val age = activity.findViewById(com.tarbadev.carambar.R.id.newCharacterAge) as TextView
         return age.text as String
+    }
+
+    fun clickOnAge() {
+        val ageButton = activity.findViewById(com.tarbadev.carambar.R.id.ageButton) as Button
+        ageButton.performClick()
     }
 }

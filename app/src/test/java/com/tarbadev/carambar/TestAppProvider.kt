@@ -1,5 +1,7 @@
 package com.tarbadev.carambar
 
+import android.content.Context
+import androidx.test.core.app.ApplicationProvider
 import dagger.Module
 import dagger.Provides
 import org.springframework.web.client.RestTemplate
@@ -17,5 +19,11 @@ class TestAppProvider {
     @Named("restTemplate")
     fun provideRestTemplate(): RestTemplate {
         return RestTemplate()
+    }
+
+    @Provides
+    @Named("ApplicationContext")
+    fun provideContext(): Context {
+        return ApplicationProvider.getApplicationContext()
     }
 }

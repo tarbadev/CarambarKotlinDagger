@@ -13,7 +13,7 @@ class TestCarambarApplication : Application(), HasActivityInjector {
 
     override fun onCreate() {
         super.onCreate()
-        System.out.println("<========= TESTING APPLICATION ==========================>")
+        System.out.println("<========================== RUNNING TEST APPLICATION ==========================>")
         DaggerTestApplicationComponent.create().inject(this)
     }
 

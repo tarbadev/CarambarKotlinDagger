@@ -5,6 +5,7 @@ import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.gson.Gson
+import com.tarbadev.carambar.Factory
 import com.tarbadev.carambar.TestCarambarApplication
 import com.tarbadev.carambar.blackbox.activity.MainActivityView
 import com.tarbadev.carambar.domain.Person
@@ -64,14 +65,8 @@ class MainActivityBlackboxTest {
             assertThat(age).isEqualTo("0")
             assertThat(ageCategory).isEqualTo("Baby")
 
-            val person = Person(
-                firstName = "John",
-                lastName = "Doe",
-                sex = "Male",
-                origin = "United States",
-                ageCategory = AgeCategory.BABY,
-                age = 0
-            )
+            val person = Factory.person()
+
             assertThat(getInternalFileContent(PersonRepository.FILENAME)).isEqualTo(Gson().toJson(person))
         }
     }

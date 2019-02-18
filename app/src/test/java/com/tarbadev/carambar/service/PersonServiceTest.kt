@@ -4,6 +4,7 @@ import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.given
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
+import com.tarbadev.carambar.Factory
 import com.tarbadev.carambar.client.PersonClientAsync
 import com.tarbadev.carambar.domain.Person
 import com.tarbadev.carambar.domain.AgeCategory
@@ -25,7 +26,7 @@ internal class PersonServiceTest {
 
     @Test
     fun `getNewCharacter returns Person from Person API`() {
-        val expectedPerson = getPerson()
+        val expectedPerson = Factory.person()
 
         given(personClientAsync.execute()).willReturn(personClientAsync)
         given(personClientAsync.get()).willReturn(expectedPerson)
@@ -44,7 +45,7 @@ internal class PersonServiceTest {
 
     @Test
     fun `incrementAge returns Person with updated age`() {
-        val originalPerson = getPerson().copy(age = 1)
+        val originalPerson = Factory.person().copy(age = 1)
         val expectedPerson = originalPerson.copy(age = 2)
 
         given(personRepository.getPerson()).willReturn(originalPerson)
@@ -59,7 +60,7 @@ internal class PersonServiceTest {
 
     @Test
     fun `getPerson returns a saved person`() {
-        val person = getPerson()
+        val person = Factory.person()
 
         given(personRepository.getPerson()).willReturn(person)
 
@@ -68,7 +69,7 @@ internal class PersonServiceTest {
 
     @Test
     fun `getPerson returns a new person if none exist`() {
-        val person = getPerson()
+        val person = Factory.person()
 
         given(personRepository.getPerson()).willReturn(null)
         given(personClientAsync.execute()).willReturn(personClientAsync)
@@ -76,16 +77,5 @@ internal class PersonServiceTest {
         given(personRepository.save(person)).willReturn(person)
 
         assertThat(personService.getPerson()).isEqualTo(person)
-    }
-
-    private fun getPerson(): Person {
-        return Person(
-            firstName = "John",
-            lastName = "Doe",
-            sex = "Male",
-            origin = "USA",
-            age = 0,
-            ageCategory = AgeCategory.BABY
-        )
     }
 }

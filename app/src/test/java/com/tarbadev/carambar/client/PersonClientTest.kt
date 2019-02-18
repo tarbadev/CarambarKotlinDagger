@@ -2,6 +2,7 @@ package com.tarbadev.carambar.client
 
 import com.nhaarman.mockito_kotlin.given
 import com.nhaarman.mockito_kotlin.mock
+import com.tarbadev.carambar.Factory
 import com.tarbadev.carambar.client.entity.PersonClientNameResponse
 import com.tarbadev.carambar.client.entity.PersonClientResponse
 import com.tarbadev.carambar.client.entity.PersonClientResultResponse
@@ -45,14 +46,7 @@ internal class PersonClientTest {
             )
         ).willReturn(ResponseEntity(personClientResultResponse, HttpStatus.OK))
 
-        val person = Person(
-            firstName = "John",
-            lastName = "Doe",
-            sex = "Male",
-            origin = "United States",
-            age = 0,
-            ageCategory = AgeCategory.BABY
-        )
+        val person = Factory.person()
 
         assertThat(personClient.generateNewPerson()).isEqualTo(person)
     }

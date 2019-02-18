@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import com.nhaarman.mockito_kotlin.given
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
+import com.tarbadev.carambar.Factory
 import com.tarbadev.carambar.domain.Person
 import com.tarbadev.carambar.domain.AgeCategory
 import com.tarbadev.carambar.helper.InternalFileHelper
@@ -23,14 +24,7 @@ internal class PersonRepositoryTest {
 
     @Test
     fun `save writes person file with person object`() {
-        val person = Person(
-            firstName = "John",
-            lastName = "Doe",
-            sex = "Male",
-            origin = "United States",
-            age = 18,
-            ageCategory = AgeCategory.BABY
-        )
+        val person = Factory.person().copy(age = 18)
         val expectedFileContent = Gson().toJson(person)
         val returnedPerson = personRepository.save(person)
 
@@ -41,14 +35,7 @@ internal class PersonRepositoryTest {
 
     @Test
     fun `getPerson reads person file and returns Person`() {
-        val person = Person(
-            firstName = "John",
-            lastName = "Doe",
-            sex = "Male",
-            origin = "United States",
-            age = 18,
-            ageCategory = AgeCategory.BABY
-        )
+        val person = Factory.person().copy(age = 18)
         val fileContent = Gson().toJson(person)
 
         given(internalFileHelper.getFileContent(PersonRepository.FILENAME)).willReturn(fileContent)

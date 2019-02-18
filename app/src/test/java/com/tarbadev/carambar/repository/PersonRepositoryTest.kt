@@ -5,6 +5,7 @@ import com.nhaarman.mockito_kotlin.given
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
 import com.tarbadev.carambar.domain.Person
+import com.tarbadev.carambar.domain.AgeCategory
 import com.tarbadev.carambar.helper.InternalFileHelper
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
@@ -27,7 +28,8 @@ internal class PersonRepositoryTest {
             lastName = "Doe",
             sex = "Male",
             origin = "United States",
-            age = 18
+            age = 18,
+            ageCategory = AgeCategory.BABY
         )
         val expectedFileContent = Gson().toJson(person)
         val returnedPerson = personRepository.save(person)
@@ -44,7 +46,8 @@ internal class PersonRepositoryTest {
             lastName = "Doe",
             sex = "Male",
             origin = "United States",
-            age = 18
+            age = 18,
+            ageCategory = AgeCategory.BABY
         )
         val fileContent = Gson().toJson(person)
 

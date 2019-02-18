@@ -41,11 +41,13 @@ class MainActivity : AppCompatActivity() {
         val sex = findViewById<TextView>(R.id.newCharacterSex)
         val origin = findViewById<TextView>(R.id.newCharacterOrigin)
         val age = findViewById<TextView>(R.id.newCharacterAge)
+        val ageCategory = findViewById<TextView>(R.id.newCharacterAgeCategory)
 
         firstName.text = person.firstName
         lastName.text = person.lastName
         sex.text = person.sex
         origin.text = person.origin
         age.text = person.age.toString()
+        ageCategory.text = person.ageCategory.displayName
     }
 }

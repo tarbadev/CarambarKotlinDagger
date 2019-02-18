@@ -6,6 +6,7 @@ import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
 import com.tarbadev.carambar.client.PersonClientAsync
 import com.tarbadev.carambar.domain.Person
+import com.tarbadev.carambar.domain.AgeCategory
 import com.tarbadev.carambar.repository.PersonRepository
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
@@ -83,7 +84,8 @@ internal class PersonServiceTest {
             lastName = "Doe",
             sex = "Male",
             origin = "USA",
-            age = 0
+            age = 0,
+            ageCategory = AgeCategory.BABY
         )
     }
 }

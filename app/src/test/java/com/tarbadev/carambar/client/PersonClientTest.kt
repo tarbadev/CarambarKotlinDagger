@@ -6,6 +6,7 @@ import com.tarbadev.carambar.client.entity.PersonClientNameResponse
 import com.tarbadev.carambar.client.entity.PersonClientResponse
 import com.tarbadev.carambar.client.entity.PersonClientResultResponse
 import com.tarbadev.carambar.domain.Person
+import com.tarbadev.carambar.domain.AgeCategory
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -49,7 +50,8 @@ internal class PersonClientTest {
             lastName = "Doe",
             sex = "Male",
             origin = "United States",
-            age = 0
+            age = 0,
+            ageCategory = AgeCategory.BABY
         )
 
         assertThat(personClient.generateNewPerson()).isEqualTo(person)

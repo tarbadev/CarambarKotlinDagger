@@ -8,6 +8,7 @@ import com.google.gson.Gson
 import com.tarbadev.carambar.TestCarambarApplication
 import com.tarbadev.carambar.blackbox.activity.MainActivityView
 import com.tarbadev.carambar.domain.Person
+import com.tarbadev.carambar.domain.AgeCategory
 import com.tarbadev.carambar.repository.PersonRepository
 import com.tarbadev.carambar.ui.activity.MainActivity
 import okhttp3.mockwebserver.MockResponse
@@ -53,33 +54,25 @@ class MainActivityBlackboxTest {
             val lastName = mainActivityView.getLastName()
             val sex = mainActivityView.getSex()
             val origin = mainActivityView.getOrigin()
+            val age = mainActivityView.getAge()
+            val ageCategory = mainActivityView.getAgeCategory()
 
             assertThat(firstName).isEqualTo("John")
             assertThat(lastName).isEqualTo("Doe")
             assertThat(sex).isEqualTo("Male")
             assertThat(origin).isEqualTo("United States")
+            assertThat(age).isEqualTo("0")
+            assertThat(ageCategory).isEqualTo("Baby")
 
             val person = Person(
                 firstName = "John",
                 lastName = "Doe",
                 sex = "Male",
                 origin = "United States",
+                ageCategory = AgeCategory.BABY,
                 age = 0
             )
             assertThat(getInternalFileContent(PersonRepository.FILENAME)).isEqualTo(Gson().toJson(person))
-        }
-    }
-
-    @Test
-    fun `home displays Character's Age`() {
-        enqueueSuccessGenerationResponse()
-
-        ActivityScenario.launch(MainActivity::class.java).onActivity { activity ->
-            val mainActivityView = MainActivityView(activity)
-
-            val age = mainActivityView.getAge()
-
-            assertThat(age).isEqualTo("0")
         }
     }
 
@@ -108,7 +101,8 @@ class MainActivityBlackboxTest {
             lastName = "Faure",
             sex = "Male",
             origin = "Italy",
-            age = 42
+            age = 42,
+            ageCategory = AgeCategory.BABY
         )
         writeInternalFile(PersonRepository.FILENAME, Gson().toJson(person))
 

@@ -1,0 +1,62 @@
+{
+  "results": [
+    {
+      "gender": "male",
+      "name": {
+        "title": "mr",
+        "first": "john",
+        "last": "doe"
+      },
+      "location": {
+        "street": "2222 oxford terrace",
+        "city": "nelson",
+        "state": "nelson",
+        "postcode": 63350,
+        "coordinates": {
+          "latitude": "68.0609",
+          "longitude": "127.0520"
+        },
+        "timezone": {
+          "offset": "-3:00",
+          "description": "Brazil, Buenos Aires, Georgetown"
+        }
+      },
+      "email": "imogen.johnson@example.com",
+      "login": {
+        "uuid": "65e53a87-9fa6-41e2-92ed-6a5b4ec19718",
+        "username": "ticklishgorilla696",
+        "password": "torpedo",
+        "salt": "0PAf5ivl",
+        "md5": "f35c836c3048bc04a5eb77c1db21816c",
+        "sha1": "6b20338c50b0d6f493a297adf2e3e154fbbcf585",
+        "sha256": "77e18f8727ab0a5f4f9d63a982a5ec8e18d0d6bf36d42f32badc9b14b8bc0492"
+      },
+      "dob": {
+        "date": "1964-01-26T03:45:38Z",
+        "age": 55
+      },
+      "registered": {
+        "date": "2013-06-26T01:40:43Z",
+        "age": 5
+      },
+      "phone": "(971)-641-5316",
+      "cell": "(802)-370-5670",
+      "id": {
+        "name": "",
+        "value": null
+      },
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/women/29.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/29.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/29.jpg"
+      },
+      "nat": "US"
+    }
+  ],
+  "info": {
+    "seed": "1a433680f8d4c126",
+    "results": 1,
+    "page": 1,
+    "version": "1.2"
+  }
+}

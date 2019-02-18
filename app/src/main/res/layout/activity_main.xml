@@ -5,15 +5,43 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".ui.activity.MainActivity">
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" android:id="@+id/hello"/>
+            app:layout_constraintTop_toTopOf="parent" android:id="@+id/newCharacterFirstName"
+            app:layout_constraintHorizontal_bias="0.047" app:layout_constraintVertical_bias="0.022"
+            android:text="First Name"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" android:id="@+id/newCharacterLastName"
+            app:layout_constraintHorizontal_bias="0.047" app:layout_constraintVertical_bias="0.06"
+            android:text="Last Name"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" android:id="@+id/newCharacterSex"
+            app:layout_constraintHorizontal_bias="0.047" app:layout_constraintVertical_bias="0.103"
+            android:text="Sex"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" android:id="@+id/newCharacterOrigin"
+            app:layout_constraintHorizontal_bias="0.047" app:layout_constraintVertical_bias="0.143"
+            android:text="Origin"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

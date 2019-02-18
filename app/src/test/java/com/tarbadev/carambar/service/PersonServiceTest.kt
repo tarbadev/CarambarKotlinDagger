@@ -24,19 +24,13 @@ internal class PersonServiceTest {
 
     @Test
     fun `getNewCharacter returns Person from Person API`() {
-        val expectedPerson = Person(
-            firstName = "John",
-            lastName = "Doe",
-            sex = "Male",
-            origin = "USA",
-            age = 0
-        )
+        val expectedPerson = getPerson()
 
         given(personClientAsync.execute()).willReturn(personClientAsync)
         given(personClientAsync.get()).willReturn(expectedPerson)
         given(personRepository.save(expectedPerson)).willReturn(expectedPerson)
 
-        val newPerson = personService.getNewCharacter()
+        val newPerson = personService.getNewPerson()
 
         assertThat(newPerson.firstName).isEqualTo(expectedPerson.firstName)
         assertThat(newPerson.lastName).isEqualTo(expectedPerson.lastName)
@@ -49,14 +43,7 @@ internal class PersonServiceTest {
 
     @Test
     fun `incrementAge returns Person with updated age`() {
-        val originalPerson = Person(
-            firstName = "John",
-            lastName = "Doe",
-            sex = "Male",
-            origin = "USA",
-            age = 1
-        )
-
+        val originalPerson = getPerson().copy(age = 1)
         val expectedPerson = originalPerson.copy(age = 2)
 
         given(personRepository.getPerson()).willReturn(originalPerson)
@@ -67,5 +54,36 @@ internal class PersonServiceTest {
         assertThat(person.age).isEqualTo(expectedPerson.age)
 
         verify(personRepository).save(expectedPerson)
+    }
+
+    @Test
+    fun `getPerson returns a saved person`() {
+        val person = getPerson()
+
+        given(personRepository.getPerson()).willReturn(person)
+
+        assertThat(personService.getPerson()).isEqualTo(person)
+    }
+
+    @Test
+    fun `getPerson returns a new person if none exist`() {
+        val person = getPerson()
+
+        given(personRepository.getPerson()).willReturn(null)
+        given(personClientAsync.execute()).willReturn(personClientAsync)
+        given(personClientAsync.get()).willReturn(person)
+        given(personRepository.save(person)).willReturn(person)
+
+        assertThat(personService.getPerson()).isEqualTo(person)
+    }
+
+    private fun getPerson(): Person {
+        return Person(
+            firstName = "John",
+            lastName = "Doe",
+            sex = "Male",
+            origin = "USA",
+            age = 0
+        )
     }
 }

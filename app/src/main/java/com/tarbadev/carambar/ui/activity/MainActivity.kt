@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getRandomPerson() {
-        person = personService.getNewCharacter()
+        person = personService.getPerson()
     }
 
     private fun displayPerson() {

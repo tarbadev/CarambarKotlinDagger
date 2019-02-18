@@ -54,4 +54,11 @@ internal class PersonRepositoryTest {
 
         assertThat(returnedPerson).isEqualTo(person)
     }
+
+    @Test
+    fun `getPerson returns null if person not found`() {
+        given(internalFileHelper.getFileContent(PersonRepository.FILENAME)).willReturn(null)
+
+        assertThat(personRepository.getPerson()).isNull()
+    }
 }

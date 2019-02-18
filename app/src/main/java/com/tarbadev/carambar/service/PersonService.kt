@@ -9,7 +9,7 @@ class PersonService @Inject constructor(
     private val personClientAsync: PersonClientAsync,
     private val personRepository: PersonRepository
 ) {
-    fun getNewCharacter(): Person {
+    fun getNewPerson(): Person {
         val person = personClientAsync.execute().get()
 
         return personRepository.save(person)
@@ -18,6 +18,11 @@ class PersonService @Inject constructor(
     fun incrementAge(): Person {
         val person = personRepository.getPerson()
 
-        return personRepository.save(person.copy(age = person.age.plus(1)))
+        return personRepository.save(person!!.copy(age = person.age.plus(1)))
+    }
+
+    fun getPerson(): Person {
+        val person = personRepository.getPerson()
+        return person ?: getNewPerson()
     }
 }

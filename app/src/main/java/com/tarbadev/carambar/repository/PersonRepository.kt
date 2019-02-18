@@ -12,7 +12,7 @@ class PersonRepository @Inject constructor(val internalFileHelper: InternalFileH
         const val FILENAME = "person.json"
     }
 
-    fun getPerson(): Person {
+    fun getPerson(): Person? {
         val content = internalFileHelper.getFileContent(FILENAME)
         return Gson().fromJson(content, Person::class.java)
     }

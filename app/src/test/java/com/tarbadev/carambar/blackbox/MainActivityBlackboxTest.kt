@@ -44,12 +44,7 @@ class MainActivityBlackboxTest {
 
     @Test
     fun `home displays New Generated Character`() {
-        val response = getResourceFileContent("personClientResponse.json")
-        val mockedResponse = MockResponse()
-        mockedResponse.setResponseCode(200)
-        mockedResponse.addHeader("Content-Type", APPLICATION_JSON_VALUE)
-        mockedResponse.setBody(response)
-        mockServer.enqueue(mockedResponse)
+        enqueueSuccessGenerationResponse()
 
         ActivityScenario.launch(MainActivity::class.java).onActivity { activity ->
             val mainActivityView = MainActivityView(activity)
@@ -77,12 +72,7 @@ class MainActivityBlackboxTest {
 
     @Test
     fun `home displays Character's Age`() {
-        val response = getResourceFileContent("personClientResponse.json")
-        val mockedResponse = MockResponse()
-        mockedResponse.setResponseCode(200)
-        mockedResponse.addHeader("Content-Type", APPLICATION_JSON_VALUE)
-        mockedResponse.setBody(response)
-        mockServer.enqueue(mockedResponse)
+        enqueueSuccessGenerationResponse()
 
         ActivityScenario.launch(MainActivity::class.java).onActivity { activity ->
             val mainActivityView = MainActivityView(activity)
@@ -95,12 +85,7 @@ class MainActivityBlackboxTest {
 
     @Test
     fun `home displays a button Age that updates the age of the character`() {
-        val response = getResourceFileContent("personClientResponse.json")
-        val mockedResponse = MockResponse()
-        mockedResponse.setResponseCode(200)
-        mockedResponse.addHeader("Content-Type", APPLICATION_JSON_VALUE)
-        mockedResponse.setBody(response)
-        mockServer.enqueue(mockedResponse)
+        enqueueSuccessGenerationResponse()
 
         ActivityScenario.launch(MainActivity::class.java).onActivity { activity ->
             val mainActivityView = MainActivityView(activity)
@@ -116,6 +101,34 @@ class MainActivityBlackboxTest {
         }
     }
 
+    @Test
+    fun `home loads my previous game`() {
+        val person = Person(
+            firstName = "Leandro",
+            lastName = "Faure",
+            sex = "Male",
+            origin = "Italy",
+            age = 42
+        )
+        writeInternalFile(PersonRepository.FILENAME, Gson().toJson(person))
+
+        ActivityScenario.launch(MainActivity::class.java).onActivity { activity ->
+            val mainActivityView = MainActivityView(activity)
+
+            val firstName = mainActivityView.getFirstName()
+            val lastName = mainActivityView.getLastName()
+            val sex = mainActivityView.getSex()
+            val origin = mainActivityView.getOrigin()
+            val age = mainActivityView.getAge()
+
+            assertThat(firstName).isEqualTo(person.firstName)
+            assertThat(lastName).isEqualTo(person.lastName)
+            assertThat(sex).isEqualTo(person.sex)
+            assertThat(origin).isEqualTo(person.origin)
+            assertThat(age).isEqualTo(person.age.toString())
+        }
+    }
+
     private fun getResourceFileContent(fileName: String): String {
         return IOUtils.toString(javaClass.classLoader.getResourceAsStream(fileName))
     }
@@ -123,5 +136,20 @@ class MainActivityBlackboxTest {
     private fun getInternalFileContent(fileName: String): String {
         val fileInput = context.openFileInput(fileName)
         return String(fileInput.readBytes())
+    }
+
+    private fun enqueueSuccessGenerationResponse() {
+        val response = getResourceFileContent("personClientResponse.json")
+        val mockedResponse = MockResponse()
+        mockedResponse.setResponseCode(200)
+        mockedResponse.addHeader("Content-Type", APPLICATION_JSON_VALUE)
+        mockedResponse.setBody(response)
+        mockServer.enqueue(mockedResponse)
+    }
+
+    private fun writeInternalFile(fileName: String, fileContent: String) {
+        context.openFileOutput(fileName, Context.MODE_PRIVATE).use {
+            it.write(fileContent.toByteArray())
+        }
     }
 }

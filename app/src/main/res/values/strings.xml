@@ -2,4 +2,6 @@
 <resources>
     <string name="app_name">Carambar</string>
     <string name="ageLabel">Age</string>
+    <string name="characterLabel">Character</string>
+    <string name="homeLabel">Home</string>
 </resources>

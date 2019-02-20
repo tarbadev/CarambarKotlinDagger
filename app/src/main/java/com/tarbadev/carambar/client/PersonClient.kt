@@ -4,7 +4,6 @@ import com.tarbadev.carambar.annotation.AllOpen
 import com.tarbadev.carambar.client.entity.PersonClientResponse
 import com.tarbadev.carambar.client.entity.PersonClientResultResponse
 import com.tarbadev.carambar.domain.Person
-import com.tarbadev.carambar.domain.AgeCategory
 import com.tarbadev.carambar.domain.Sex
 import org.springframework.web.client.RestTemplate
 import javax.inject.Inject

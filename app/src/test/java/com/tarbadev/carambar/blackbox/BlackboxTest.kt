@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.tarbadev.carambar.TestCarambarApplication
+import com.tarbadev.carambar.repository.EventListRepository
 import com.tarbadev.carambar.repository.PersonRepository
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -27,6 +28,7 @@ abstract class BlackboxTest {
         mockServer.start(8888)
 
         context.deleteFile(PersonRepository.FILENAME)
+        context.deleteFile(EventListRepository.FILENAME)
     }
 
     @After

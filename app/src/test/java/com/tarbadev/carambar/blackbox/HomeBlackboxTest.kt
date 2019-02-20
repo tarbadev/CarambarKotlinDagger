@@ -18,7 +18,7 @@ import org.junit.Test
 class HomeBlackboxTest: BlackboxTest() {
 
     @Test
-    fun `home displays a button Age that updates the age of the character`() {
+    fun `home displays a button Age that updates the age of the character and adds an event`() {
         enqueueSuccessGenerationResponse()
 
         ActivityScenario.launch(MainActivity::class.java).onActivity { activity ->
@@ -31,8 +31,15 @@ class HomeBlackboxTest: BlackboxTest() {
 
             mainActivityView.clickOnHomeButton()
 
+            val eventListSize = mainActivityView.getEvents().size
+
             mainActivityView.clickOnAgeButton()
             mainActivityView.clickOnAgeButton()
+
+            val eventList = mainActivityView.getEvents()
+            assertThat(eventList).hasSize(eventListSize + 2)
+            assertThat(eventList[eventListSize]).isEqualTo("Age 1")
+            assertThat(eventList[eventListSize + 1]).isEqualTo("Age 2")
 
             mainActivityView.clickOnCharacterButton()
 

@@ -65,6 +65,17 @@ internal class PersonServiceTest {
     }
 
     @Test
+    fun `incrementAge adds a log event with the new age`() {
+        val originalPerson = Factory.person().copy(age = 1)
+
+        given(personRepository.read()).willReturn(originalPerson)
+
+        personService.incrementAge()
+
+        verify(eventListService).add("Age 2")
+    }
+
+    @Test
     fun `getPerson returns a saved person`() {
         val person = Factory.person()
 

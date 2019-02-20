@@ -41,6 +41,9 @@ class HomeFragment: BaseFragment() {
     private fun displayEvents() {
         val eventList = eventListService.getEventList()
         val eventContainer = findViewById<LinearLayout>(R.id.event_list)
+
+        eventContainer.removeAllViews()
+
         eventList.events.forEach {
             val textView = TextView(context)
             textView.text = it
@@ -53,6 +56,7 @@ class HomeFragment: BaseFragment() {
         val ageButton = findViewById<Button>(R.id.ageButton)
         ageButton.setOnClickListener {
             personService.incrementAge()
+            displayEvents()
         }
     }
 }

@@ -35,8 +35,11 @@ class PersonService @Inject constructor(
 
     fun incrementAge(): Person {
         val person = personRepository.read()
+        val updatedPerson = person!!.copy(age = person.age.plus(1))
 
-        return personRepository.save(person!!.copy(age = person.age.plus(1)))
+        eventListService.add(String.format("Age %d", updatedPerson.age))
+
+        return personRepository.save(updatedPerson)
     }
 
     fun getPerson(): Person {

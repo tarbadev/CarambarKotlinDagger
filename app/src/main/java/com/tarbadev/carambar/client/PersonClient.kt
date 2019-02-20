@@ -5,6 +5,7 @@ import com.tarbadev.carambar.client.entity.PersonClientResponse
 import com.tarbadev.carambar.client.entity.PersonClientResultResponse
 import com.tarbadev.carambar.domain.Person
 import com.tarbadev.carambar.domain.AgeCategory
+import com.tarbadev.carambar.domain.Sex
 import org.springframework.web.client.RestTemplate
 import javax.inject.Inject
 import javax.inject.Named
@@ -45,7 +46,7 @@ class PersonClient @Inject constructor(
         return Person(
             firstName = personClientResponse.name.first.capitalize(),
             lastName = personClientResponse.name.last.capitalize(),
-            sex = personClientResponse.gender.capitalize(),
+            sex = Sex.valueOf(personClientResponse.gender.toUpperCase()),
             origin = mapOriginResponseToDomain.getValue(personClientResponse.nat)
         )
     }

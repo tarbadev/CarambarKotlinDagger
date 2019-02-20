@@ -53,7 +53,7 @@ class CharacterFragment: BaseFragment() {
 
         firstName.text = person.firstName
         lastName.text = person.lastName
-        sex.text = person.sex
+        sex.text = person.sex.gender
         origin.text = person.origin
         age.text = person.age.toString()
         ageCategory.text = person.ageCategory.displayName

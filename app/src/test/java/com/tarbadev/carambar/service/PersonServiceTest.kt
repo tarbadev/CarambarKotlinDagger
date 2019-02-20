@@ -6,8 +6,6 @@ import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
 import com.tarbadev.carambar.Factory
 import com.tarbadev.carambar.client.PersonClientAsync
-import com.tarbadev.carambar.domain.Person
-import com.tarbadev.carambar.domain.AgeCategory
 import com.tarbadev.carambar.repository.PersonRepository
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
@@ -18,14 +16,16 @@ internal class PersonServiceTest {
     private lateinit var personService: PersonService
     private val personClientAsync: PersonClientAsync = mock()
     private val personRepository: PersonRepository = mock()
+    private val eventListService: EventListService = mock()
 
     @BeforeEach
     fun setup() {
-        personService = PersonService(personClientAsync, personRepository)
+        personService = PersonService(personClientAsync, personRepository, eventListService)
     }
 
+
     @Test
-    fun `getNewCharacter returns Person from Person API`() {
+    fun `getNewCharacter returns Person from Person API and adds an event`() {
         val expectedPerson = Factory.person()
 
         given(personClientAsync.execute()).willReturn(personClientAsync)
@@ -41,6 +41,12 @@ internal class PersonServiceTest {
         assertThat(newPerson.age).isEqualTo(expectedPerson.age)
 
         verify(personRepository).save(expectedPerson)
+
+        val expectedEvent = """
+                You just started your life!
+                You're a baby boy named John Doe from United States
+            """.trimIndent()
+        verify(eventListService).add(expectedEvent)
     }
 
     @Test
@@ -48,7 +54,7 @@ internal class PersonServiceTest {
         val originalPerson = Factory.person().copy(age = 1)
         val expectedPerson = originalPerson.copy(age = 2)
 
-        given(personRepository.getPerson()).willReturn(originalPerson)
+        given(personRepository.read()).willReturn(originalPerson)
         given(personRepository.save(any())).willReturn(expectedPerson)
 
         val person = personService.incrementAge()
@@ -62,7 +68,7 @@ internal class PersonServiceTest {
     fun `getPerson returns a saved person`() {
         val person = Factory.person()
 
-        given(personRepository.getPerson()).willReturn(person)
+        given(personRepository.read()).willReturn(person)
 
         assertThat(personService.getPerson()).isEqualTo(person)
     }
@@ -71,7 +77,7 @@ internal class PersonServiceTest {
     fun `getPerson returns a new person if none exist`() {
         val person = Factory.person()
 
-        given(personRepository.getPerson()).willReturn(null)
+        given(personRepository.read()).willReturn(null)
         given(personClientAsync.execute()).willReturn(personClientAsync)
         given(personClientAsync.get()).willReturn(person)
         given(personRepository.save(person)).willReturn(person)

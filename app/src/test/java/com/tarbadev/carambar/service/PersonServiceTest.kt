@@ -95,4 +95,11 @@ internal class PersonServiceTest {
 
         assertThat(personService.getPerson()).isEqualTo(person)
     }
+
+    @Test
+    fun `removePerson calls the repository to delete current person`() {
+        personService.removePerson()
+
+        verify(personRepository).delete()
+    }
 }

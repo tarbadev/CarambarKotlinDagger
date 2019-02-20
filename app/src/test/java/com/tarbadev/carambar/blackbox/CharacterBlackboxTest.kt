@@ -19,7 +19,7 @@ class CharacterBlackboxTest: BlackboxTest() {
         ActivityScenario.launch(MainActivity::class.java).onActivity { activity ->
             val mainActivityView = HomeView(activity)
 
-            mainActivityView.clickOnCharacterButton()
+            mainActivityView.clickOnCharacterTab()
 
             val personCharacteristicView = CharacterView(activity)
 

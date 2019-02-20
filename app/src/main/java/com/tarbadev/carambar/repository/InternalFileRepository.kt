@@ -30,4 +30,8 @@ class InternalFileRepository<T>(
 
         return entity
     }
+
+    fun delete() {
+        context.deleteFile(fileName)
+    }
 }

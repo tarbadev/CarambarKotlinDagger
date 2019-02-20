@@ -8,4 +8,8 @@
           android:icon="@drawable/ic_person_black_24dp"
           app:showAsAction="ifRoom"
           android:title="@string/characterLabel" />
+    <item android:id="@+id/bottom_navigation_settings"
+          android:icon="@drawable/ic_settings_black_24dp"
+          app:showAsAction="ifRoom"
+          android:title="@string/settingsLabel" />
 </menu>

@@ -46,4 +46,8 @@ class PersonService @Inject constructor(
         val person = personRepository.read()
         return person ?: getNewPerson()
     }
+
+    fun removePerson() {
+        personRepository.delete()
+    }
 }

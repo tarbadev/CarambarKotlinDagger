@@ -7,12 +7,16 @@ import com.google.android.material.bottomnavigation.BottomNavigationItemView
 
 abstract class BaseView(private val activity: Activity) {
 
-    fun clickOnCharacterButton() {
+    fun clickOnCharacterTab() {
         clickOnBottomNavigationTab(com.tarbadev.carambar.R.id.bottom_navigation_character)
     }
 
-    fun clickOnHomeButton() {
+    fun clickOnHomeTab() {
         clickOnBottomNavigationTab(com.tarbadev.carambar.R.id.bottom_navigation_home)
+    }
+
+    fun clickOnSettingsTab() {
+        clickOnBottomNavigationTab(com.tarbadev.carambar.R.id.bottom_navigation_settings)
     }
 
     protected fun getTextViewText(id: Int): String {

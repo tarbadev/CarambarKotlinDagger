@@ -17,4 +17,8 @@ class EventListService @Inject constructor(val eventListRepository: EventListRep
     fun getEventList(): EventList {
         return eventListRepository.read() ?: EventList()
     }
+
+    fun deleteEvents() {
+        eventListRepository.delete()
+    }
 }

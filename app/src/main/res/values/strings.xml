@@ -4,4 +4,10 @@
     <string name="ageLabel">Age</string>
     <string name="characterLabel">Character</string>
     <string name="homeLabel">Home</string>
+    <string name="settingsLabel">Settings</string>
+    <string name="endLifeLabel">End Life</string>
+    <string name="endLifeDialogTitle">End Life ?</string>
+    <string name="endLifeDialogMessage">Are you sure you want to end the life of your character?\nA new character will be generated</string>
+    <string name="endLifeConfirm">I\'m done with it!</string>
+    <string name="endLifeDiscard">Nevermind...</string>
 </resources>

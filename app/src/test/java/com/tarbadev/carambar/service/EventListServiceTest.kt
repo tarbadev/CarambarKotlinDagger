@@ -52,4 +52,11 @@ internal class EventListServiceTest {
 
         assertThat(eventListService.getEventList()).isEqualTo(eventList)
     }
+
+    @Test
+    fun `deleteEvents calls the repository to delete current events`() {
+        eventListService.deleteEvents()
+
+        verify(eventListRepository).delete()
+    }
 }

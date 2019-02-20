@@ -25,11 +25,11 @@ class HomeBlackboxTest: BlackboxTest() {
             val mainActivityView = HomeView(activity)
             val personCharacteristicView = CharacterView(activity)
 
-            mainActivityView.clickOnCharacterButton()
+            mainActivityView.clickOnCharacterTab()
 
             assertThat(personCharacteristicView.getAge()).isEqualTo("0")
 
-            mainActivityView.clickOnHomeButton()
+            mainActivityView.clickOnHomeTab()
 
             val eventListSize = mainActivityView.getEvents().size
 
@@ -41,7 +41,7 @@ class HomeBlackboxTest: BlackboxTest() {
             assertThat(eventList[eventListSize]).isEqualTo("Age 1")
             assertThat(eventList[eventListSize + 1]).isEqualTo("Age 2")
 
-            mainActivityView.clickOnCharacterButton()
+            mainActivityView.clickOnCharacterTab()
 
             assertThat(personCharacteristicView.getAge()).isEqualTo("2")
         }
@@ -104,7 +104,7 @@ class HomeBlackboxTest: BlackboxTest() {
             val mainActivityView = HomeView(activity)
             val personCharacteristicView = CharacterView(activity)
 
-            mainActivityView.clickOnCharacterButton()
+            mainActivityView.clickOnCharacterTab()
 
             assertThat(personCharacteristicView.getFirstName()).isEqualTo(person.firstName)
             assertThat(personCharacteristicView.getLastName()).isEqualTo(person.lastName)

@@ -7,6 +7,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.tarbadev.carambar.R
 import com.tarbadev.carambar.ui.fragment.CharacterFragment
 import com.tarbadev.carambar.ui.fragment.HomeFragment
+import com.tarbadev.carambar.ui.fragment.SettingsFragment
 import dagger.android.AndroidInjection
 
 class MainActivity : AppCompatActivity() {
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
             var selectedTab: Fragment = HomeFragment()
             when (it.itemId) {
                 R.id.bottom_navigation_character -> selectedTab = CharacterFragment()
+                R.id.bottom_navigation_settings -> selectedTab = SettingsFragment()
             }
 
             setCurrentTab(selectedTab)

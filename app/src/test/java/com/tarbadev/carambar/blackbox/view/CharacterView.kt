@@ -4,26 +4,30 @@ import com.tarbadev.carambar.ui.activity.MainActivity
 
 class CharacterView(activity: MainActivity): BaseView(activity) {
     fun getFirstName(): String {
-        return getTextViewText(com.tarbadev.carambar.R.id.newCharacterFirstName)
+        return getTextViewText(com.tarbadev.carambar.R.id.characterFirstName)
     }
 
     fun getLastName(): String {
-        return getTextViewText(com.tarbadev.carambar.R.id.newCharacterLastName)
+        return getTextViewText(com.tarbadev.carambar.R.id.characterLastName)
     }
 
     fun getSex(): String {
-        return getTextViewText(com.tarbadev.carambar.R.id.newCharacterSex)
+        return getTextViewText(com.tarbadev.carambar.R.id.characterSex)
     }
 
     fun getOrigin(): String {
-        return getTextViewText(com.tarbadev.carambar.R.id.newCharacterOrigin)
+        return getTextViewText(com.tarbadev.carambar.R.id.characterOrigin)
     }
 
     fun getAge(): String {
-        return getTextViewText(com.tarbadev.carambar.R.id.newCharacterAge)
+        return getTextViewText(com.tarbadev.carambar.R.id.characterAge)
     }
 
     fun getAgeCategory(): String {
-        return getTextViewText(com.tarbadev.carambar.R.id.newCharacterAgeCategory)
+        return getTextViewText(com.tarbadev.carambar.R.id.characterAgeCategory)
+    }
+
+    fun getSchool(): String {
+        return getTextViewText(com.tarbadev.carambar.R.id.characterSchool)
     }
 }

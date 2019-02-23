@@ -6,31 +6,36 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/newCharacterFirstName"
+            android:id="@+id/characterFirstName"
             android:text="First Name"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/newCharacterLastName"
+            android:id="@+id/characterLastName"
             android:text="Last Name"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/newCharacterSex"
+            android:id="@+id/characterSex"
             android:text="Sex"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/newCharacterOrigin"
+            android:id="@+id/characterOrigin"
             android:text="Origin"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/newCharacterAge"
+            android:id="@+id/characterAge"
             android:text="Age"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/newCharacterAgeCategory"
+            android:id="@+id/characterAgeCategory"
             android:text="Age Category"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/characterSchool"
+            android:text="School"/>
 </LinearLayout>

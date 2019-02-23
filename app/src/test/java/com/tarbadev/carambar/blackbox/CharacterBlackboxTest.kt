@@ -29,6 +29,7 @@ class CharacterBlackboxTest: BlackboxTest() {
             assertThat(personCharacteristicView.getOrigin()).isEqualTo("United States")
             assertThat(personCharacteristicView.getAge()).isEqualTo("0")
             assertThat(personCharacteristicView.getAgeCategory()).isEqualTo("Baby")
+            assertThat(personCharacteristicView.getSchool()).isEqualTo("N/A")
 
             val person = Factory.person()
 

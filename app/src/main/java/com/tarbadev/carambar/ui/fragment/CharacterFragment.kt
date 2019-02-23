@@ -44,12 +44,13 @@ class CharacterFragment: BaseFragment() {
     }
 
     private fun displayPerson() {
-        val firstName = findViewById<TextView>(R.id.newCharacterFirstName)
-        val lastName = findViewById<TextView>(R.id.newCharacterLastName)
-        val sex = findViewById<TextView>(R.id.newCharacterSex)
-        val origin = findViewById<TextView>(R.id.newCharacterOrigin)
-        val age = findViewById<TextView>(R.id.newCharacterAge)
-        val ageCategory = findViewById<TextView>(R.id.newCharacterAgeCategory)
+        val firstName = findViewById<TextView>(R.id.characterFirstName)
+        val lastName = findViewById<TextView>(R.id.characterLastName)
+        val sex = findViewById<TextView>(R.id.characterSex)
+        val origin = findViewById<TextView>(R.id.characterOrigin)
+        val age = findViewById<TextView>(R.id.characterAge)
+        val ageCategory = findViewById<TextView>(R.id.characterAgeCategory)
+        val school = findViewById<TextView>(R.id.characterSchool)
 
         firstName.text = person.firstName
         lastName.text = person.lastName
@@ -57,5 +58,6 @@ class CharacterFragment: BaseFragment() {
         origin.text = person.origin
         age.text = person.age.toString()
         ageCategory.text = person.ageCategory.displayName
+        school.text = person.school
     }
 }

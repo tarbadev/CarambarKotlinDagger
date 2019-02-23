@@ -1,6 +1,7 @@
 package com.tarbadev.carambar
 
 import com.tarbadev.carambar.domain.Person
+import com.tarbadev.carambar.domain.School
 import com.tarbadev.carambar.domain.Sex
 
 class Factory {
@@ -11,7 +12,8 @@ class Factory {
                 lastName = "Doe",
                 sex = Sex.MALE,
                 origin = "United States",
-                age = 0
+                age = 0,
+                school = School.NONE
             )
         }
     }

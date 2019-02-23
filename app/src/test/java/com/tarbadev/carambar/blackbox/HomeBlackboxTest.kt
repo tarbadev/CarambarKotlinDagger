@@ -7,6 +7,7 @@ import com.tarbadev.carambar.blackbox.view.HomeView
 import com.tarbadev.carambar.blackbox.view.CharacterView
 import com.tarbadev.carambar.domain.EventList
 import com.tarbadev.carambar.domain.Person
+import com.tarbadev.carambar.domain.School
 import com.tarbadev.carambar.domain.Sex
 import com.tarbadev.carambar.repository.EventListRepository
 import com.tarbadev.carambar.repository.PersonRepository
@@ -111,6 +112,82 @@ class HomeBlackboxTest: BlackboxTest() {
             assertThat(personCharacteristicView.getSex()).isEqualTo(person.sex.gender)
             assertThat(personCharacteristicView.getOrigin()).isEqualTo(person.origin)
             assertThat(personCharacteristicView.getAge()).isEqualTo(person.age.toString())
+        }
+    }
+
+    @Test
+    fun `aging changes the school and logs in events`() {
+        val person = person().copy(age = 2)
+        writeInternalFile(PersonRepository.FILENAME, Gson().toJson(person))
+
+        ActivityScenario.launch(MainActivity::class.java).onActivity { activity ->
+            val mainActivityView = HomeView(activity)
+            val personCharacteristicView = CharacterView(activity)
+
+            mainActivityView.clickOnCharacterTab()
+            assertThat(personCharacteristicView.getSchool()).isEqualTo("N/A")
+
+            mainActivityView.clickOnHomeTab()
+            mainActivityView.clickOnAgeButton()
+
+            mainActivityView.clickOnCharacterTab()
+            assertThat(personCharacteristicView.getAge()).isEqualTo("3")
+            assertThat(personCharacteristicView.getSchool()).isEqualTo("Kindergarten")
+
+            mainActivityView.clickOnHomeTab()
+            var eventList = mainActivityView.getEvents()
+            assertThat(eventList[eventList.size - 1]).isEqualTo(String.format("You just started %s", School.KINDERGARTEN.displayName))
+
+            mainActivityView.clickOnAgeButton()
+            mainActivityView.clickOnAgeButton()
+            mainActivityView.clickOnAgeButton()
+
+            mainActivityView.clickOnCharacterTab()
+            assertThat(personCharacteristicView.getAge()).isEqualTo("6")
+            assertThat(personCharacteristicView.getSchool()).isEqualTo("Primary School")
+
+            mainActivityView.clickOnHomeTab()
+            eventList = mainActivityView.getEvents()
+            assertThat(eventList[eventList.size - 1]).isEqualTo(String.format("You just started %s", School.PRIMARY_SCHOOL.displayName))
+
+            mainActivityView.clickOnAgeButton()
+            mainActivityView.clickOnAgeButton()
+            mainActivityView.clickOnAgeButton()
+            mainActivityView.clickOnAgeButton()
+            mainActivityView.clickOnAgeButton()
+
+            mainActivityView.clickOnCharacterTab()
+            assertThat(personCharacteristicView.getAge()).isEqualTo("11")
+            assertThat(personCharacteristicView.getSchool()).isEqualTo("Middle School")
+
+            mainActivityView.clickOnHomeTab()
+            eventList = mainActivityView.getEvents()
+            assertThat(eventList[eventList.size - 1]).isEqualTo(String.format("You just started %s", School.MIDDLE_SCHOOL.displayName))
+
+            mainActivityView.clickOnAgeButton()
+            mainActivityView.clickOnAgeButton()
+            mainActivityView.clickOnAgeButton()
+            mainActivityView.clickOnAgeButton()
+
+            mainActivityView.clickOnCharacterTab()
+            assertThat(personCharacteristicView.getAge()).isEqualTo("15")
+            assertThat(personCharacteristicView.getSchool()).isEqualTo("High School")
+
+            mainActivityView.clickOnHomeTab()
+            eventList = mainActivityView.getEvents()
+            assertThat(eventList[eventList.size - 1]).isEqualTo(String.format("You just started %s", School.HIGH_SCHOOL.displayName))
+
+            mainActivityView.clickOnAgeButton()
+            mainActivityView.clickOnAgeButton()
+            mainActivityView.clickOnAgeButton()
+
+            mainActivityView.clickOnCharacterTab()
+            assertThat(personCharacteristicView.getAge()).isEqualTo("18")
+            assertThat(personCharacteristicView.getSchool()).isEqualTo("N/A")
+
+            mainActivityView.clickOnHomeTab()
+            eventList = mainActivityView.getEvents()
+            assertThat(eventList[eventList.size - 1]).isEqualTo(String.format("You finished your studies"))
         }
     }
 }

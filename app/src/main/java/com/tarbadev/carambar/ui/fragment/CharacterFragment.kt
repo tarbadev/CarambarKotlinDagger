@@ -58,6 +58,6 @@ class CharacterFragment: BaseFragment() {
         origin.text = person.origin
         age.text = person.age.toString()
         ageCategory.text = person.ageCategory.displayName
-        school.text = person.school
+        school.text = person.school.displayName
     }
 }

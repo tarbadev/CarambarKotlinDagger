@@ -6,6 +6,7 @@ import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
 import com.tarbadev.carambar.Factory
 import com.tarbadev.carambar.client.PersonClientAsync
+import com.tarbadev.carambar.domain.School
 import com.tarbadev.carambar.repository.PersonRepository
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
@@ -73,6 +74,34 @@ internal class PersonServiceTest {
         personService.incrementAge()
 
         verify(eventListService).add("Age 2")
+    }
+
+    @Test
+    fun `incrementAge changes school and adds a log event with the new school`() {
+        val originalPerson = Factory.person().copy(age = 2, school = School.NONE)
+        val expectedPerson = originalPerson.copy(age = 3, school = School.KINDERGARTEN)
+
+        given(personRepository.read()).willReturn(originalPerson)
+
+        personService.incrementAge()
+
+        verify(eventListService).add("Age 3")
+        verify(eventListService).add(String.format("You just started %s", School.KINDERGARTEN.displayName))
+        verify(personRepository).save(expectedPerson)
+    }
+
+    @Test
+    fun `incrementAge changes school and adds a log event when ending school`() {
+        val originalPerson = Factory.person().copy(age = 17, school = School.HIGH_SCHOOL)
+        val expectedPerson = originalPerson.copy(age = 18, school = School.NONE)
+
+        given(personRepository.read()).willReturn(originalPerson)
+
+        personService.incrementAge()
+
+        verify(eventListService).add("Age 18")
+        verify(eventListService).add("You finished your studies")
+        verify(personRepository).save(expectedPerson)
     }
 
     @Test

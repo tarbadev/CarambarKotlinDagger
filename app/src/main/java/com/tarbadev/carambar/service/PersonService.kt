@@ -2,6 +2,7 @@ package com.tarbadev.carambar.service
 
 import com.tarbadev.carambar.client.PersonClientAsync
 import com.tarbadev.carambar.domain.Person
+import com.tarbadev.carambar.domain.School
 import com.tarbadev.carambar.repository.PersonRepository
 import javax.inject.Inject
 
@@ -35,9 +36,22 @@ class PersonService @Inject constructor(
 
     fun incrementAge(): Person {
         val person = personRepository.read()
-        val updatedPerson = person!!.copy(age = person.age.plus(1))
+        val originalSchool = person!!.school
+        val newAge = person.age.plus(1)
+        val newSchool = getSchoolForAge(newAge)
+        val updatedPerson = person.copy(age = newAge, school = newSchool)
 
         eventListService.add(String.format("Age %d", updatedPerson.age))
+
+        if (originalSchool != newSchool) {
+            var message = String.format("You just started %s", newSchool.displayName)
+
+            if (newSchool == School.NONE) {
+                message = "You finished your studies"
+            }
+            
+            eventListService.add(message)
+        }
 
         return personRepository.save(updatedPerson)
     }
@@ -49,5 +63,15 @@ class PersonService @Inject constructor(
 
     fun removePerson() {
         personRepository.delete()
+    }
+
+    private fun getSchoolForAge(age: Int): School {
+        return when (age) {
+            in 15..17 -> School.HIGH_SCHOOL
+            in 11..14 -> School.MIDDLE_SCHOOL
+            in 6..10 -> School.PRIMARY_SCHOOL
+            in 3..5 -> School.KINDERGARTEN
+            else -> School.NONE
+        }
     }
 }

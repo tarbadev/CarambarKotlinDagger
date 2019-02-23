@@ -6,7 +6,7 @@ data class Person(
     val sex: Sex,
     val origin: String,
     val age: Int = 0,
-    val school: String= "N/A"
+    val school: School = School.NONE
 ) {
     val ageCategory: AgeCategory
     get() {

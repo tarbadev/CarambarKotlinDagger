@@ -49,7 +49,7 @@ class PersonService @Inject constructor(
             if (newSchool == School.NONE) {
                 message = "You finished your studies"
             }
-            
+
             eventListService.add(message)
         }
 

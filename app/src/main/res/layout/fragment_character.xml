@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
@@ -7,35 +8,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/characterFirstName"
-            android:text="First Name"/>
+            tools:text="John"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/characterLastName"
-            android:text="Last Name"/>
+            tools:text="Doe"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/characterSex"
-            android:text="Sex"/>
+            tools:text="Male"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/characterOrigin"
-            android:text="Origin"/>
+            tools:text="United States"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/characterAge"
-            android:text="Age"/>
+            tools:text="16"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/characterAgeCategory"
-            android:text="Age Category"/>
+            tools:text="Teen"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/characterSchool"
-            android:text="School"/>
+            tools:text="High School"/>
 </LinearLayout>

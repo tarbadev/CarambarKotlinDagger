@@ -7,13 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.ScrollView
 import android.widget.TextView
 import com.tarbadev.carambar.R
 import com.tarbadev.carambar.service.EventListService
 import com.tarbadev.carambar.service.PersonService
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
-
 
 class HomeFragment: BaseFragment() {
     @Inject
@@ -41,6 +41,7 @@ class HomeFragment: BaseFragment() {
     private fun displayEvents() {
         val eventList = eventListService.getEventList()
         val eventContainer = findViewById<LinearLayout>(R.id.event_list)
+        val scrollView = findViewById<ScrollView>(R.id.scrollable_events)
 
         eventContainer.removeAllViews()
 
@@ -50,6 +51,8 @@ class HomeFragment: BaseFragment() {
 
             eventContainer.addView(textView)
         }
+
+        scrollView.post { scrollView.fullScroll(ScrollView.FOCUS_DOWN) }
     }
 
     private fun setupListeners() {

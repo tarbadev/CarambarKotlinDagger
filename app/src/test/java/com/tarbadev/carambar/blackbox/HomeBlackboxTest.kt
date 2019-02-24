@@ -16,7 +16,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
 
-class HomeBlackboxTest: BlackboxTest() {
+class HomeBlackboxTest : BlackboxTest() {
 
     @Test
     fun `home displays a button Age that updates the age of the character and adds an event`() {
@@ -136,7 +136,12 @@ class HomeBlackboxTest: BlackboxTest() {
 
             mainActivityView.clickOnHomeTab()
             var eventList = mainActivityView.getEvents()
-            assertThat(eventList[eventList.size - 1]).isEqualTo(String.format("You just started %s", School.KINDERGARTEN.displayName))
+            assertThat(eventList[eventList.size - 1]).isEqualTo(
+                String.format(
+                    "You just started %s",
+                    School.KINDERGARTEN.displayName
+                )
+            )
 
             mainActivityView.clickOnAgeButton()
             mainActivityView.clickOnAgeButton()
@@ -148,7 +153,12 @@ class HomeBlackboxTest: BlackboxTest() {
 
             mainActivityView.clickOnHomeTab()
             eventList = mainActivityView.getEvents()
-            assertThat(eventList[eventList.size - 1]).isEqualTo(String.format("You just started %s", School.PRIMARY_SCHOOL.displayName))
+            assertThat(eventList[eventList.size - 1]).isEqualTo(
+                String.format(
+                    "You just started %s",
+                    School.PRIMARY_SCHOOL.displayName
+                )
+            )
 
             mainActivityView.clickOnAgeButton()
             mainActivityView.clickOnAgeButton()
@@ -162,7 +172,12 @@ class HomeBlackboxTest: BlackboxTest() {
 
             mainActivityView.clickOnHomeTab()
             eventList = mainActivityView.getEvents()
-            assertThat(eventList[eventList.size - 1]).isEqualTo(String.format("You just started %s", School.MIDDLE_SCHOOL.displayName))
+            assertThat(eventList[eventList.size - 1]).isEqualTo(
+                String.format(
+                    "You just started %s",
+                    School.MIDDLE_SCHOOL.displayName
+                )
+            )
 
             mainActivityView.clickOnAgeButton()
             mainActivityView.clickOnAgeButton()
@@ -175,7 +190,12 @@ class HomeBlackboxTest: BlackboxTest() {
 
             mainActivityView.clickOnHomeTab()
             eventList = mainActivityView.getEvents()
-            assertThat(eventList[eventList.size - 1]).isEqualTo(String.format("You just started %s", School.HIGH_SCHOOL.displayName))
+            assertThat(eventList[eventList.size - 1]).isEqualTo(
+                String.format(
+                    "You just started %s",
+                    School.HIGH_SCHOOL.displayName
+                )
+            )
 
             mainActivityView.clickOnAgeButton()
             mainActivityView.clickOnAgeButton()
@@ -188,6 +208,33 @@ class HomeBlackboxTest: BlackboxTest() {
             mainActivityView.clickOnHomeTab()
             eventList = mainActivityView.getEvents()
             assertThat(eventList[eventList.size - 1]).isEqualTo(String.format("You finished your studies"))
+        }
+    }
+
+    @Test
+    fun `aging changes the school and gives graduate`() {
+        val person = person().copy(age = 14, school = School.MIDDLE_SCHOOL)
+        writeInternalFile(PersonRepository.FILENAME, Gson().toJson(person))
+
+        ActivityScenario.launch(MainActivity::class.java).onActivity { activity ->
+            val mainActivityView = HomeView(activity)
+            mainActivityView.clickOnAgeButton()
+
+            var eventList = mainActivityView.getEvents()
+            assertThat(eventList).containsSequence(
+                String.format("You graduated from %s", School.MIDDLE_SCHOOL.displayName),
+                String.format("You just started %s", School.HIGH_SCHOOL.displayName)
+            )
+
+            mainActivityView.clickOnAgeButton()
+            mainActivityView.clickOnAgeButton()
+            mainActivityView.clickOnAgeButton()
+
+            eventList = mainActivityView.getEvents()
+            assertThat(eventList).containsSequence(
+                String.format("You graduated from %s", School.HIGH_SCHOOL.displayName),
+                "You finished your studies"
+            )
         }
     }
 }

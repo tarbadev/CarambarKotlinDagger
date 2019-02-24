@@ -43,6 +43,11 @@ class PersonService @Inject constructor(
 
         eventListService.add(String.format("Age %d", updatedPerson.age))
 
+        if ((originalSchool == School.MIDDLE_SCHOOL && newSchool == School.HIGH_SCHOOL) ||
+            (originalSchool == School.HIGH_SCHOOL && newSchool == School.NONE)) {
+            eventListService.add(String.format("You graduated from %s", originalSchool.displayName))
+        }
+
         if (originalSchool != newSchool) {
             var message = String.format("You just started %s", newSchool.displayName)
 

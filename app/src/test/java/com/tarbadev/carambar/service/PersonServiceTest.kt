@@ -91,6 +91,32 @@ internal class PersonServiceTest {
     }
 
     @Test
+    fun `incrementAge gives you graduate for Middle School and adds a log event`() {
+        val originalPerson = Factory.person().copy(age = 14, school = School.MIDDLE_SCHOOL)
+        val expectedPerson = originalPerson.copy(age = 15, school = School.HIGH_SCHOOL)
+
+        given(personRepository.read()).willReturn(originalPerson)
+
+        personService.incrementAge()
+
+        verify(eventListService).add(String.format("You graduated from %s", School.MIDDLE_SCHOOL.displayName))
+        verify(personRepository).save(expectedPerson)
+    }
+
+    @Test
+    fun `incrementAge gives you graduate for High School and adds a log event`() {
+        val originalPerson = Factory.person().copy(age = 17, school = School.HIGH_SCHOOL)
+        val expectedPerson = originalPerson.copy(age = 18, school = School.NONE)
+
+        given(personRepository.read()).willReturn(originalPerson)
+
+        personService.incrementAge()
+
+        verify(eventListService).add(String.format("You graduated from %s", School.HIGH_SCHOOL.displayName))
+        verify(personRepository).save(expectedPerson)
+    }
+
+    @Test
     fun `incrementAge changes school and adds a log event when ending school`() {
         val originalPerson = Factory.person().copy(age = 17, school = School.HIGH_SCHOOL)
         val expectedPerson = originalPerson.copy(age = 18, school = School.NONE)

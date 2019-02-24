@@ -9,6 +9,7 @@ import com.tarbadev.carambar.repository.PersonRepository
 import com.tarbadev.carambar.ui.activity.MainActivity
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
+import java.math.BigDecimal
 
 class CharacterBlackboxTest: BlackboxTest() {
 
@@ -31,7 +32,7 @@ class CharacterBlackboxTest: BlackboxTest() {
             assertThat(personCharacteristicView.getAgeCategory()).isEqualTo("Baby")
             assertThat(personCharacteristicView.getSchool()).isEqualTo("N/A")
 
-            val person = Factory.person()
+            val person = Factory.person().copy(balance = BigDecimal.ZERO)
 
             assertThat(getInternalFileContent(PersonRepository.FILENAME)).isEqualTo(Gson().toJson(person))
         }

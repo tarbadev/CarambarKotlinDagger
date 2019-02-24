@@ -10,4 +10,5 @@
     <string name="endLifeDialogMessage">Are you sure you want to end the life of your character?\nA new character will be generated</string>
     <string name="endLifeConfirm">I\'m done with it!</string>
     <string name="endLifeDiscard">Nevermind...</string>
+    <string name="balanceLabel">Balance</string>
 </resources>

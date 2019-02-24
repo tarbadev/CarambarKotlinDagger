@@ -1,12 +1,15 @@
 package com.tarbadev.carambar.domain
 
+import java.math.BigDecimal
+
 data class Person(
     val firstName: String,
     val lastName: String,
     val sex: Sex,
     val origin: String,
     val age: Int = 0,
-    val school: School = School.NONE
+    val school: School = School.NONE,
+    val balance: BigDecimal = BigDecimal.ZERO
 ) {
     val ageCategory: AgeCategory
     get() {

@@ -13,4 +13,7 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     internal abstract fun contributeSettingsFragment(): SettingsFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun contributeTopBarFragment(): TopBarFragment
 }

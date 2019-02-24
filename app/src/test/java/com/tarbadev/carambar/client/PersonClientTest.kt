@@ -6,14 +6,13 @@ import com.tarbadev.carambar.Factory
 import com.tarbadev.carambar.client.entity.PersonClientNameResponse
 import com.tarbadev.carambar.client.entity.PersonClientResponse
 import com.tarbadev.carambar.client.entity.PersonClientResultResponse
-import com.tarbadev.carambar.domain.Person
-import com.tarbadev.carambar.domain.AgeCategory
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.client.RestTemplate
+import java.math.BigDecimal
 
 
 internal class PersonClientTest {
@@ -46,7 +45,7 @@ internal class PersonClientTest {
             )
         ).willReturn(ResponseEntity(personClientResultResponse, HttpStatus.OK))
 
-        val person = Factory.person()
+        val person = Factory.person().copy(balance = BigDecimal.ZERO)
 
         assertThat(personClient.generateNewPerson()).isEqualTo(person)
     }

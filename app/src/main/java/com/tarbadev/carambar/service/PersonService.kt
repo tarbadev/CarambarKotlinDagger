@@ -45,6 +45,7 @@ class PersonService @Inject constructor(
 
         if ((originalSchool == School.MIDDLE_SCHOOL && newSchool == School.HIGH_SCHOOL) ||
             (originalSchool == School.HIGH_SCHOOL && newSchool == School.NONE)) {
+            updatedPerson.graduates.add(originalSchool)
             eventListService.add(String.format("You graduated from %s", originalSchool.displayName))
         }
 

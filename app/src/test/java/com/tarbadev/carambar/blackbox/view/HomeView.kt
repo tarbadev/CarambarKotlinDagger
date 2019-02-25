@@ -6,7 +6,7 @@ import androidx.core.view.children
 import com.tarbadev.carambar.R
 import com.tarbadev.carambar.ui.activity.MainActivity
 
-class HomeView(private val activity: MainActivity): BaseView(activity) {
+class HomeView(activity: MainActivity): BaseView(activity) {
 
     fun clickOnAgeButton() {
         clickOnButton(R.id.ageButton)

@@ -93,7 +93,7 @@ internal class PersonServiceTest {
     @Test
     fun `incrementAge gives you graduate for Middle School and adds a log event`() {
         val originalPerson = Factory.person().copy(age = 14, school = School.MIDDLE_SCHOOL)
-        val expectedPerson = originalPerson.copy(age = 15, school = School.HIGH_SCHOOL)
+        val expectedPerson = originalPerson.copy(age = 15, school = School.HIGH_SCHOOL, graduates = mutableListOf(School.MIDDLE_SCHOOL))
 
         given(personRepository.read()).willReturn(originalPerson)
 
@@ -105,8 +105,8 @@ internal class PersonServiceTest {
 
     @Test
     fun `incrementAge gives you graduate for High School and adds a log event`() {
-        val originalPerson = Factory.person().copy(age = 17, school = School.HIGH_SCHOOL)
-        val expectedPerson = originalPerson.copy(age = 18, school = School.NONE)
+        val originalPerson = Factory.person().copy(age = 17, school = School.HIGH_SCHOOL, graduates = mutableListOf(School.MIDDLE_SCHOOL))
+        val expectedPerson = originalPerson.copy(age = 18, school = School.NONE, graduates = mutableListOf(School.MIDDLE_SCHOOL, School.HIGH_SCHOOL))
 
         given(personRepository.read()).willReturn(originalPerson)
 

@@ -1,42 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/characterFirstName"
-            tools:text="John"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/characterLastName"
-            tools:text="Doe"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/characterSex"
-            tools:text="Male"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/characterOrigin"
-            tools:text="United States"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/characterAge"
-            tools:text="16"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/characterAgeCategory"
-            tools:text="Teen"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/characterSchool"
-            tools:text="High School"/>
-</LinearLayout>
+<com.google.android.material.card.MaterialCardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical">
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal">
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/characterFirstName"
+                      android:paddingLeft="0dp"
+                      android:paddingStart="0dp"
+                      android:paddingRight="5dp"
+                      android:paddingEnd="5dp"
+                      style="@style/CartTitle"
+                      tools:text="John"/>
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/characterLastName"
+                      style="@style/CartTitle"
+                      tools:text="Doe"/>
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="match_parent"
+                          android:gravity="end|center_vertical">
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:id="@+id/characterAgeCategory"
+                          android:paddingLeft="0dp"
+                          android:paddingStart="0dp"
+                          android:paddingRight="10dp"
+                          android:paddingEnd="10dp"
+                          tools:text="Teen"/>
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:id="@+id/characterAge"
+                          android:paddingLeft="0dp"
+                          android:paddingStart="0dp"
+                          android:paddingRight="5dp"
+                          android:paddingEnd="5dp"
+                          tools:text="16"/>
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="@string/years_old"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal">
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:paddingLeft="0dp"
+                      android:paddingStart="0dp"
+                      android:paddingRight="5dp"
+                      android:paddingEnd="5dp"
+                      style="@style/CartLabel"
+                      android:text="@string/sexLabel"/>
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/characterSex"
+                      tools:text="Male"/>
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="match_parent"
+                          android:gravity="end|center_vertical">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/characterOrigin"
+                        tools:text="United States"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View android:layout_width="match_parent"
+              android:layout_height="1dp"
+              android:layout_marginTop="5dp"
+              android:layout_marginBottom="5dp"
+              android:background="@android:color/darker_gray"/>
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="0dp"
+                    android:paddingStart="0dp"
+                    android:paddingRight="5dp"
+                    android:paddingEnd="5dp"
+                    style="@style/CartLabel"
+                    android:text="@string/schoolLabel"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/characterSchool"
+                    tools:text="High School"/>
+        </LinearLayout>
+
+        <View android:layout_width="match_parent"
+              android:layout_height="1dp"
+              android:layout_marginTop="5dp"
+              android:layout_marginBottom="5dp"
+              android:background="@android:color/darker_gray"/>
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="0dp"
+                    android:paddingStart="0dp"
+                    android:paddingRight="5dp"
+                    android:paddingEnd="5dp"
+                    style="@style/CartLabel"
+                    android:text="@string/graduateLabel"/>
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/characterGraduates"/>
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

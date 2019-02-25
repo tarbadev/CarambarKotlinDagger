@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.tarbadev.carambar.R
 import com.tarbadev.carambar.domain.Person
@@ -13,7 +14,7 @@ import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
 
-class CharacterFragment: BaseFragment() {
+class CharacterFragment : BaseFragment() {
     @Inject
     lateinit var personService: PersonService
 
@@ -51,6 +52,7 @@ class CharacterFragment: BaseFragment() {
         val age = findViewById<TextView>(R.id.characterAge)
         val ageCategory = findViewById<TextView>(R.id.characterAgeCategory)
         val school = findViewById<TextView>(R.id.characterSchool)
+        val graduateContainer = findViewById<LinearLayout>(R.id.characterGraduates)
 
         firstName.text = person.firstName
         lastName.text = person.lastName
@@ -59,5 +61,13 @@ class CharacterFragment: BaseFragment() {
         age.text = person.age.toString()
         ageCategory.text = person.ageCategory.displayName
         school.text = person.school.displayName
+
+        graduateContainer.removeAllViews()
+        person.graduates.forEach {
+            val textView = TextView(context)
+            textView.text = it.displayName
+
+            graduateContainer.addView(textView)
+        }
     }
 }

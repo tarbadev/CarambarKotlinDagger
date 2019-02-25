@@ -226,6 +226,11 @@ class HomeBlackboxTest : BlackboxTest() {
                 String.format("You just started %s", School.HIGH_SCHOOL.displayName)
             )
 
+            val personCharacteristicView = CharacterView(activity)
+            personCharacteristicView.clickOnCharacterTab()
+            assertThat(personCharacteristicView.getGraduates()).isEqualTo(listOf(School.MIDDLE_SCHOOL.displayName))
+
+            mainActivityView.clickOnHomeTab()
             mainActivityView.clickOnAgeButton()
             mainActivityView.clickOnAgeButton()
             mainActivityView.clickOnAgeButton()
@@ -235,6 +240,12 @@ class HomeBlackboxTest : BlackboxTest() {
                 String.format("You graduated from %s", School.HIGH_SCHOOL.displayName),
                 "You finished your studies"
             )
+
+            personCharacteristicView.clickOnCharacterTab()
+            assertThat(personCharacteristicView.getGraduates()).isEqualTo(listOf(
+                School.MIDDLE_SCHOOL.displayName,
+                School.HIGH_SCHOOL.displayName
+            ))
         }
     }
 }

@@ -5,7 +5,7 @@ import android.widget.Button
 import android.widget.TextView
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 
-abstract class BaseView(private val activity: Activity) {
+abstract class BaseView(protected val activity: Activity) {
 
     fun clickOnCharacterTab() {
         clickOnBottomNavigationTab(com.tarbadev.carambar.R.id.bottom_navigation_character)

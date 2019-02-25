@@ -9,7 +9,8 @@ data class Person(
     val origin: String,
     val age: Int = 0,
     val school: School = School.NONE,
-    val balance: BigDecimal = BigDecimal.ZERO
+    val balance: BigDecimal = BigDecimal.ZERO,
+    val graduates: MutableList<School> = mutableListOf()
 ) {
     val ageCategory: AgeCategory
     get() {

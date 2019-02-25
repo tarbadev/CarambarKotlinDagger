@@ -9,13 +9,14 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
+import androidx.core.content.res.ResourcesCompat
 import com.tarbadev.carambar.R
 import com.tarbadev.carambar.service.EventListService
 import com.tarbadev.carambar.service.PersonService
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-class HomeFragment: BaseFragment() {
+class HomeFragment : BaseFragment() {
     @Inject
     lateinit var personService: PersonService
     @Inject
@@ -48,6 +49,7 @@ class HomeFragment: BaseFragment() {
         eventList.events.forEach {
             val textView = TextView(context)
             textView.text = it
+            textView.typeface = ResourcesCompat.getFont(context!!, R.font.indie_flower)
 
             eventContainer.addView(textView)
         }

@@ -1,7 +1,6 @@
 package com.tarbadev.carambar.ui.fragment
 
 import android.content.Context
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -40,7 +39,7 @@ class SettingsFragment: BaseFragment() {
         val endLifeButton = findViewById<Button>(R.id.endLifeButton)
         endLifeButton.setOnClickListener {
             AlertDialog
-                .Builder(context!!)
+                .Builder(context!!, R.style.DialogTheme)
                 .setTitle(R.string.endLifeDialogTitle)
                 .setMessage(R.string.endLifeDialogMessage)
                 .setPositiveButton(R.string.endLifeConfirm) { _, _ ->

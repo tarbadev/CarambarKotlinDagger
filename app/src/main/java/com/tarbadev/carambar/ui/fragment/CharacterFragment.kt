@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.res.ResourcesCompat
 import com.tarbadev.carambar.R
 import com.tarbadev.carambar.domain.Person
 import com.tarbadev.carambar.service.PersonService
@@ -66,6 +67,7 @@ class CharacterFragment : BaseFragment() {
         person.graduates.forEach {
             val textView = TextView(context)
             textView.text = it.displayName
+            textView.typeface = ResourcesCompat.getFont(context!!, R.font.indie_flower)
 
             graduateContainer.addView(textView)
         }

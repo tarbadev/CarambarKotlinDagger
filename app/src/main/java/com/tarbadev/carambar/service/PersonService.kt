@@ -29,7 +29,7 @@ class PersonService @Inject constructor(
             person.lastName,
             person.origin
         )
-        eventListService.add(event)
+        eventListService.add(0, event)
 
         return personRepository.save(person)
     }
@@ -41,12 +41,12 @@ class PersonService @Inject constructor(
         val newSchool = getSchoolForAge(newAge)
         val updatedPerson = person.copy(age = newAge, school = newSchool)
 
-        eventListService.add(String.format("Age %d", updatedPerson.age))
+        eventListService.add(updatedPerson.age)
 
         if ((originalSchool == School.MIDDLE_SCHOOL && newSchool == School.HIGH_SCHOOL) ||
             (originalSchool == School.HIGH_SCHOOL && newSchool == School.NONE)) {
             updatedPerson.graduates.add(originalSchool)
-            eventListService.add(String.format("You graduated from %s", originalSchool.displayName))
+            eventListService.add(updatedPerson.age, String.format("You graduated from %s", originalSchool.displayName))
         }
 
         if (originalSchool != newSchool) {
@@ -56,7 +56,7 @@ class PersonService @Inject constructor(
                 message = "You finished your studies"
             }
 
-            eventListService.add(message)
+            eventListService.add(updatedPerson.age, message)
         }
 
         return personRepository.save(updatedPerson)

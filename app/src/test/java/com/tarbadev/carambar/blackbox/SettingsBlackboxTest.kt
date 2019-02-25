@@ -4,6 +4,7 @@ import androidx.test.core.app.ActivityScenario
 import com.google.gson.Gson
 import com.tarbadev.carambar.Factory
 import com.tarbadev.carambar.blackbox.view.CharacterView
+import com.tarbadev.carambar.blackbox.view.EventView
 import com.tarbadev.carambar.blackbox.view.HomeView
 import com.tarbadev.carambar.blackbox.view.SettingsView
 import com.tarbadev.carambar.domain.EventList
@@ -25,7 +26,7 @@ class SettingsBlackboxTest: BlackboxTest() {
             origin = "Australia",
             age = 36
         )
-        val existingEventList = EventList(mutableListOf("Event 1", "Event 2"))
+        val existingEventList = EventList(mutableMapOf(Pair(36, mutableListOf("Event 1", "Event 2"))))
 
         writeInternalFile(EventListRepository.FILENAME, Gson().toJson(existingEventList))
         writeInternalFile(PersonRepository.FILENAME, Gson().toJson(existingPerson))
@@ -49,10 +50,11 @@ class SettingsBlackboxTest: BlackboxTest() {
 
             val mainActivityView = HomeView(activity)
 
-            val expectedEvent = """
+            val expectedEventMessage = """
                 You just started your life!
                 You're a baby boy named John Doe from United States
             """.trimIndent()
+            val expectedEvent = EventView("Age 0", listOf(expectedEventMessage))
 
             val eventList = mainActivityView.getEvents()
             assertThat(eventList).hasSize(1)

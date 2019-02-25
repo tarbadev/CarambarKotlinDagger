@@ -18,12 +18,12 @@
         <item name="fontFamily">@font/indie_flower</item>
     </style>
 
-    <style name="CartTitle" parent="@style/TextView">
+    <style name="CardTitle" parent="@style/TextView">
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="CartLabel">
+    <style name="CardLabel">
         <item name="android:textSize">17sp</item>
         <item name="android:textStyle">bold</item>
     </style>

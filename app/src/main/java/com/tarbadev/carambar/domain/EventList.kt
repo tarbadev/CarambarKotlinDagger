@@ -1,3 +1,3 @@
 package com.tarbadev.carambar.domain
 
-data class EventList(val events: MutableList<String> = mutableListOf())
+data class EventList(val events: MutableMap<Int, MutableList<String>> = mutableMapOf())

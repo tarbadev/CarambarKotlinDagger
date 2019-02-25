@@ -20,24 +20,37 @@ internal class EventListServiceTest {
     }
 
     @Test
-    fun `add saves the given event`() {
-        val event = "Event to save"
-        val list = mutableListOf("Original Event")
-        val eventList = EventList(events = list)
+    fun `add saves the given event even if there is no message`() {
+        val eventList = EventList(events = mutableMapOf(Pair(12, mutableListOf("Original Event"))))
 
-        list.add(event)
-        val updatedEvents = EventList(events = list)
+        val updatedEvents = eventList.copy()
+        updatedEvents.events[13] = mutableListOf()
 
         given(eventListRepository.read()).willReturn(eventList)
 
-        eventListService.add(event)
+        eventListService.add(13)
+
+        verify(eventListRepository).save(updatedEvents)
+    }
+
+    @Test
+    fun `add saves the given event`() {
+        val event = "Event to save"
+        val eventList = EventList(events = mutableMapOf(Pair(12, mutableListOf("Original Event"))))
+
+        val updatedEvents = eventList.copy()
+        updatedEvents.events[13] = mutableListOf(event)
+
+        given(eventListRepository.read()).willReturn(eventList)
+
+        eventListService.add(13, event)
 
         verify(eventListRepository).save(updatedEvents)
     }
 
     @Test
     fun `getEventList returns EventList`() {
-        val eventList = EventList(mutableListOf("Some Event"))
+        val eventList = EventList(events = mutableMapOf(Pair(12, mutableListOf("Some Event"))))
 
         given(eventListRepository.read()).willReturn(eventList)
 

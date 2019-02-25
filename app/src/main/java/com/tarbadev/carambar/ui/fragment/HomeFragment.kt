@@ -6,21 +6,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.ScrollView
-import android.widget.TextView
-import androidx.core.content.res.ResourcesCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.tarbadev.carambar.R
 import com.tarbadev.carambar.service.EventListService
 import com.tarbadev.carambar.service.PersonService
+import com.tarbadev.carambar.ui.adapter.EventListAdapter
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
+
 
 class HomeFragment : BaseFragment() {
     @Inject
     lateinit var personService: PersonService
     @Inject
     lateinit var eventListService: EventListService
+
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var eventListAdapter: RecyclerView.Adapter<*>
+    private lateinit var viewManager: RecyclerView.LayoutManager
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
@@ -41,20 +45,16 @@ class HomeFragment : BaseFragment() {
 
     private fun displayEvents() {
         val eventList = eventListService.getEventList()
-        val eventContainer = findViewById<LinearLayout>(R.id.event_list)
-        val scrollView = findViewById<ScrollView>(R.id.scrollable_events)
 
-        eventContainer.removeAllViews()
+        viewManager = LinearLayoutManager(context)
+        eventListAdapter = EventListAdapter(eventList, context!!)
 
-        eventList.events.forEach {
-            val textView = TextView(context)
-            textView.text = it
-            textView.typeface = ResourcesCompat.getFont(context!!, R.font.indie_flower)
-
-            eventContainer.addView(textView)
+        recyclerView = findViewById<RecyclerView>(R.id.event_list_container).apply {
+            setHasFixedSize(true)
+            layoutManager = viewManager
+            adapter = eventListAdapter
         }
-
-        scrollView.post { scrollView.fullScroll(ScrollView.FOCUS_DOWN) }
+        recyclerView.scrollToPosition(eventList.events.size - 1)
     }
 
     private fun setupListeners() {

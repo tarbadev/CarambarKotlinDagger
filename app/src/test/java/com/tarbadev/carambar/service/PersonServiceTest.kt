@@ -47,7 +47,7 @@ internal class PersonServiceTest {
                 You just started your life!
                 You're a baby boy named John Doe from United States
             """.trimIndent()
-        verify(eventListService).add(expectedEvent)
+        verify(eventListService).add(0, expectedEvent)
     }
 
     @Test
@@ -73,7 +73,7 @@ internal class PersonServiceTest {
 
         personService.incrementAge()
 
-        verify(eventListService).add("Age 2")
+        verify(eventListService).add(2)
     }
 
     @Test
@@ -85,8 +85,7 @@ internal class PersonServiceTest {
 
         personService.incrementAge()
 
-        verify(eventListService).add("Age 3")
-        verify(eventListService).add(String.format("You just started %s", School.KINDERGARTEN.displayName))
+        verify(eventListService).add(3, String.format("You just started %s", School.KINDERGARTEN.displayName))
         verify(personRepository).save(expectedPerson)
     }
 
@@ -99,7 +98,7 @@ internal class PersonServiceTest {
 
         personService.incrementAge()
 
-        verify(eventListService).add(String.format("You graduated from %s", School.MIDDLE_SCHOOL.displayName))
+        verify(eventListService).add(15, String.format("You graduated from %s", School.MIDDLE_SCHOOL.displayName))
         verify(personRepository).save(expectedPerson)
     }
 
@@ -112,7 +111,7 @@ internal class PersonServiceTest {
 
         personService.incrementAge()
 
-        verify(eventListService).add(String.format("You graduated from %s", School.HIGH_SCHOOL.displayName))
+        verify(eventListService).add(18, String.format("You graduated from %s", School.HIGH_SCHOOL.displayName))
         verify(personRepository).save(expectedPerson)
     }
 
@@ -125,8 +124,7 @@ internal class PersonServiceTest {
 
         personService.incrementAge()
 
-        verify(eventListService).add("Age 18")
-        verify(eventListService).add("You finished your studies")
+        verify(eventListService).add(18, "You finished your studies")
         verify(personRepository).save(expectedPerson)
     }
 

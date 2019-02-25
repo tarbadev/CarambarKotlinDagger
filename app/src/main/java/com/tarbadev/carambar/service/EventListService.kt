@@ -7,11 +7,21 @@ import javax.inject.Inject
 
 @AllOpen
 class EventListService @Inject constructor(val eventListRepository: EventListRepository) {
-    fun add(event: String) {
+    fun add(age: Int, eventMessage: String?) {
         val eventList = getEventList()
-        eventList.events.add(event)
+        val events = eventList.events[age] ?: mutableListOf()
+
+        if (eventMessage != null) {
+            events.add(eventMessage)
+        }
+
+        eventList.events[age] = events
 
         eventListRepository.save(eventList)
+    }
+
+    fun add(age: Int) {
+        add(age, null)
     }
 
     fun getEventList(): EventList {
